@@ -80,8 +80,12 @@ services.AddCors();
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials());  
+app.UseSwagger();
 
-
+app.UseSwaggerUI(c =>
+            {
+               c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -102,10 +106,7 @@ services.AddCors();
                 }
             });
 
-            app.UseSwaggerUI(c =>
-            {
-               c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
+            
         
         }
     }
