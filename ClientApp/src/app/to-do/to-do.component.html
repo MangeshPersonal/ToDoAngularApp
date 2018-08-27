@@ -1,0 +1,31 @@
+
+
+<br>
+<br>
+
+<div style="text-align: right" style="Padding-left:75%">
+<button class="btn btn-primary" (click)="addtodo()" >Add New</button>
+</div>
+<hr>
+<table class='table table-striped'>
+    <thead>
+      <tr>
+        <!-- <th>Id</th> -->
+        <th>Status</th>
+        <th>Description</th>
+        <th>Title</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Todo of ToDOList">
+        <td style="display:none">{{ Todo.id }}</td>
+        <td>{{ Todo.status}}</td>
+        <td>{{ Todo.title| uppercase}}</td>
+        <td>{{ Todo.description|uppercase }}</td>
+        <td><button class="btn btn-primary" (click)="edittodo()" >Update</button></td>
+        <td><button class="btn btn-danger" >Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
