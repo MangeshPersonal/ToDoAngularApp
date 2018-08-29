@@ -1,24 +1,27 @@
-<div class="row">
+<p *ngIf="!dataloaded"><em>Loading...</em></p>
+
+<form #form="ngForm" (ngSubmit)="Edit(form)">
+  <div class="row">
 
     <div class="col-md-6 col-md-offset-2">
-      <h1>To Do Edit </h1>
-      <form >
-        <div class="form-group">
-          <label for="Title">Title</label>
-          <input type="text" class="form-control"  id="txtTitle">
-          
-        </div>
-        <div class="form-group">
-            <label for="comment">Description:</label>
-            <textarea class="form-control" rows="3" id="txtdescription"></textarea>
-          </div> 
+      <h1>Add</h1>
 
-        <div class="form-group">
-            <label for="Status">Status:</label>
-            <input type="checkbox"   id="chkStatus">
-          
-          </div>
-  <button class="btn btn-primary">Update</button>
-      </form>
+      <div class="form-group">
+        <label for="Title">Title</label>
+        <input type="text" [(ngModel)]='todo.title' width="150px" class="form-control" placeholder="Title" id="txtTitle"  #title=ngModel name="title" ngModel required>
+       <strong> <span  class="form-group has-error has-feedback" *ngIf="title.touched && !title.valid ">Required *</span></strong>
+      </div>
+      <div class="form-group">
+        <label for="comment">Description:</label>
+        <textarea [(ngModel)]='todo.description' class="form-control" #desc=ngModel  rows="3" placeholder="Description" id="txtdescription" name="desc" ngModel required></textarea>
+       <div> <strong><span class="form-group has-error has-feedback" *ngIf="desc.touched && !desc.valid ">Required *</span></strong></div>
+      </div>
+
+      <div class="form-group">
+        <label for="Status">Status:</label>
+        <input type="checkbox" [(ngModel)]='todo.status' id="chkStatus" name="chkstatus" #status=ngModel ngModel>
     </div>
+      <button class="btn btn-primary"  [disabled]="!form.valid"  >Update</button>
+</div>
   </div>
+</form>

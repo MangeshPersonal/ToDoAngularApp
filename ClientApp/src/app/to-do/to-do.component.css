@@ -1,0 +1,23 @@
+.odd {  
+    background-color:azure;  
+    text-align:left;  
+     
+};
+.even   
+{  
+    background-color:#0066ff;  
+    text-align: left;  
+     
+  
+};
+.first{  
+    background-color: #6b8dc0;  
+    text-align:center;  
+    font-family:'Times New Roman',Times, serif  
+};
+.last {  
+    background-color:#ebd2d2;  
+    text-align:center;  
+    font-family:'Times New Roman', Times, serif;  
+    font-size:15 px;  
+} 

@@ -1,31 +1,57 @@
 
 
 <br>
-<br>
-
+<div class="container">
 <div style="text-align: right" style="Padding-left:75%">
 <button class="btn btn-primary" (click)="addtodo()" >Add New</button>
 </div>
 <hr>
+<div *ngIf='pagedItems.length>0'>
 <table class='table table-striped'>
-    <thead>
-      <tr>
-        <!-- <th>Id</th> -->
-        <th>Status</th>
+    <thead style="background-color: #337ab7; color: white;text-align: center" >
+      <tr >
+        <th>Sr.No</th>
         <th>Description</th>
         <th>Title</th>
-        <th>Update</th>
-        <th>Delete</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
+
     <tbody>
-      <tr *ngFor="let Todo of ToDOList">
-        <td style="display:none">{{ Todo.id }}</td>
-        <td>{{ Todo.status}}</td>
+      <tr *ngFor="let Todo of pagedItems let i = index  let even=even,let odd=odd" [ngClass]={odd:odd,even:even}>
+        <td style="display:block">{{ i+1 }}</td>
+       
         <td>{{ Todo.title| uppercase}}</td>
         <td>{{ Todo.description|uppercase }}</td>
-        <td><button class="btn btn-primary" (click)="edittodo()" >Update</button></td>
-        <td><button class="btn btn-danger" >Delete</button></td>
+        <td>{{ Todo.status}}</td>
+        <td><button class="btn btn-primary" (click)="edittodo(Todo.id)" >Edit</button></td>
+        <td><button class="btn btn-danger" (click)="delete(Todo.id)" >Remove</button></td>
       </tr>
     </tbody>
   </table>
+  <hr>
+  <div style="Padding-left:30%">
+  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(1)">First</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+    </li>
+    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+        <a (click)="setPage(page)">{{page}}</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.currentPage + 1)">Next</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.totalPages)">Last</a>
+    </li>
+</ul>
+</div>
+</div>
+<div *ngIf='!pagedItems.length>0'>
+  <strong><span>  No  To Do Item present Click Add new to Add...</span></strong>
+</div>

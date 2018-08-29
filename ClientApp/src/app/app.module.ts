@@ -13,6 +13,7 @@ import { ToDoComponent } from './to-do/to-do.component';
 import { TodoAddComponent } from './todo-add/todo-add.component';
 import { TodoEditComponent } from './todo-edit/todo-edit.component';
 import { TodoDataService } from './DataServices/ToDoDataService';
+import { PagerService } from './PagserService/PagerService';
 
 @NgModule({
   declarations: [
@@ -35,11 +36,12 @@ import { TodoDataService } from './DataServices/ToDoDataService';
       { path: 'fetch-data', component: FetchDataComponent },
       {path:'todo',component:ToDoComponent},
       {path:'todoadd',component:TodoAddComponent},
-      {path:'todoedit',component:TodoEditComponent}
+      {path:'todoedit',component:TodoEditComponent},
+      {path:'todoedit/:id',component:TodoEditComponent}
       
     ])
   ],
-  providers: [TodoDataService],
+  providers: [TodoDataService,PagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

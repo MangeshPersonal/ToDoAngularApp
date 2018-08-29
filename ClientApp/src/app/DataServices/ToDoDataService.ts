@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
+import { ToDo } from "./ToDo";
 @Injectable()
 export class TodoDataService {
 
@@ -16,6 +17,8 @@ export class TodoDataService {
         return this.http.get<ToDo>(this._baseurl + '/' + id);
     }
     createTodo(t: ToDo) {
+       console.log(t);
+       
         return this.http.post(this._baseurl, t);
     }
     updateUser(t: ToDo) {
